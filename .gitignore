@@ -1,0 +1,29 @@
+# OSX
+.DS_Store
+
+# IDE
+.idea
+.vscode
+
+# npm
+node_modules
+
+*.lock
+
+pnpm-lock.yaml
+
+# jest
+coverage
+
+# build
+/locale
+/plugin
+/dayjs.min.js
+/esm
+/index.d.ts
+locale.json
+
+#dev
+demo.js
+
+lib
