@@ -1,12 +1,14 @@
 {
   "env": {
     "browser": true,
-    "es2021": true
+    "es2021": true,
+    "node": true
   },
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "airbnb"
   ],
   "overrides": [
     {
@@ -25,5 +27,19 @@
     "sourceType": "module"
   },
   "plugins": ["@typescript-eslint", "react"],
-  "rules": {}
+  "rules": {
+    "@typescript-eslint/ban-types": "warn",
+    "react/display-name": "warn",
+    "@typescript-eslint/no-explicit-any": "warn"
+  },
+  "settings": {
+    "import/resolver": "meteor"
+  },
+  "globals": {
+    "_": true,
+    "CSSModule": true,
+    "Streamy": true,
+    "ReactClass": true,
+    "SyntheticKeyboardEvent": true
+  }
 }
