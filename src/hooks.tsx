@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks,react-hooks/exhaustive-deps */
 import * as React from 'react';
 import { LiteStoreContractor } from './core';
 import { ILiteStoreAPI, Selector } from './types';
@@ -17,7 +16,6 @@ export const useStore = <State, Action extends Record<string, Function>, Reducer
   const [instanceIndex] = React.useState(liteStore.instance.length);
 
   usePropsChanged(() => {
-    // eslint-disable-next-line no-console
     console.warn('Store instance has been changed, which may cause some unknown error.');
   }, [liteStore, instanceIndex]);
 
@@ -46,12 +44,10 @@ export const useContextStore = <State, Action extends Record<string, Function>, 
   const instanceIndex = React.useContext(liteStore.instanceContext);
 
   usePropsChanged(() => {
-    // eslint-disable-next-line no-console
     console.warn('Store instance has been changed, which may cause some unknown error.');
   }, [liteStore, instanceIndex]);
 
   if (instanceIndex === -1) {
-    // eslint-disable-next-line no-console
     console.warn('Can not found store instance, creating.');
     return useStore(liteStore);
   }
@@ -62,7 +58,6 @@ type UseStoreProvider = (...liteStores: Array<LiteStoreContractor<any, any, any>
 
 export const useStoreProvider: UseStoreProvider = (...liteStores) => {
   usePropsChanged(() => {
-    // eslint-disable-next-line no-console
     console.warn('Imported Store has been changed, which may cause some unknown error.');
   }, liteStores);
 

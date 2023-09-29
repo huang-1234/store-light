@@ -168,7 +168,6 @@ export class LiteStoreContractor<State, Action extends Record<string, Function>,
     // ch: 遍历所有的监听
     target.subscriber.forEach((subscriber) => {
       if (subscriber != null) {
-        // eslint-disable-next-line no-param-reassign
         // ch: 如果store 实例有监听数组不为空，那么设置 subscriber.dirty = true;
         subscriber.dirty = true;
       }
