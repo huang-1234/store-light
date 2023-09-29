@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "jsx": "preserve",
     // 允许未执行的代码不报错
     "allowUnreachableCode": true,
     // 严格模式, 强烈建议开启
