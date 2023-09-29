@@ -33,7 +33,7 @@ const setState = <State extends Record<string, any>>(state: State) => (newState:
 
 const dummySync = { sync: () => {} };
 
-export class LiteStoreContractor<State, Action extends Record<string, Function>, Reducer> {
+export class LiteStoreContractor<State, Action extends Record<string, Function>, Reducer extends Record<string, any>> {
   public readonly instance: Array<ILiteStoreInstance<State, Action> | null> = [];
 
   public readonly instanceContext: React.Context<number> = React.createContext(-1);
@@ -236,7 +236,7 @@ export class LiteStoreContractor<State, Action extends Record<string, Function>,
   };
 }
 
-export const createStore = <State, Reducer = {}, Action extends Record<string, Function> = {}>(
+export const createStore = <State, Reducer extends Record<string, any> = {}, Action extends Record<string, Function> = {}>(
   initialState: InitialValue<State>,
   reducer: Reducers<State, Reducer>,
   action: Actions<State, Action, Reducer>,
@@ -254,7 +254,7 @@ export const createStoreWithoutReducer = <State, Action extends Record<string, F
   return new LiteStoreContractor(initialState, action, dummyFunction);
 };
 
-export const cloneStore = <State, Action extends Record<string, Function>, Reducer>(
+export const cloneStore = <State, Action extends Record<string, Function>, Reducer extends Record<string, any>>(
   liteStore: LiteStoreContractor<State, Action, Reducer>,
 ) => {
   return new LiteStoreContractor(
