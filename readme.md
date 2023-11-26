@@ -2,6 +2,10 @@
 
 ## package.json 依赖安装
 
+```bash
+pnpm install
+```
+
 ```json
 {
   "@rollup/plugin-alias": "^5.0.0",
