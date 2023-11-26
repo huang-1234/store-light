@@ -10,7 +10,7 @@ const usePropsChanged = (callback: () => void, deps: any[]) => {
   }
 };
 
-export const useStore = <State, Action extends Record<string, Function>, Reducer extends IDefReducer>(
+export const useStore = <State extends IDefReducer, Action extends Record<string, Function>, Reducer extends IDefReducer>(
   liteStore: LiteStoreContractor<State, Action, Reducer>,
 ): ILiteStoreAPI<State, Action> => {
   const [instanceIndex] = React.useState(liteStore.instance.length);
@@ -38,7 +38,7 @@ export const useStore = <State, Action extends Record<string, Function>, Reducer
   return store;
 };
 
-export const useContextStore = <State, Action extends Record<string, Function>, Reducer extends IDefReducer>(
+export const useContextStore = <State extends IDefReducer, Action extends Record<string, Function>, Reducer extends IDefReducer>(
   liteStore: LiteStoreContractor<State, Action, Reducer>,
 ): ILiteStoreAPI<State, Action> => {
   const instanceIndex = React.useContext(liteStore.instanceContext);
@@ -74,7 +74,7 @@ export const useStoreProvider: UseStoreProvider = (...liteStores) => {
   }, Providers);
 };
 
-export const useMemoStore = <State, Action extends Record<string, Function>, Reducer extends IDefReducer>(
+export const useMemoStore = <State extends IDefReducer, Action extends Record<string, Function>, Reducer extends IDefReducer>(
   liteStore: LiteStoreContractor<State, Action, Reducer>,
   ContextProvider?: React.ComponentType,
 ) => (render: (state: State) => React.ReactElement, selector: Selector<State>): React.ComponentType => {

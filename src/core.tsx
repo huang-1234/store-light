@@ -14,6 +14,7 @@ import {
   Produce,
   Reducers,
   Selector,
+  IDefReducer,
 } from './types';
 
 import { hasInstance, useRender } from './utils';
@@ -21,7 +22,7 @@ import { hasInstance, useRender } from './utils';
 // ch: 高阶函数。如果不自己手写reducers的话，那就是默认调用一次reducer.setState 那就是reduce更新全部的state。
 // 两种更新方法都会改变原始对象的地址。其实这个也不是组件更新的关键
 // ch: 这里使用 immer 的 produce 来实现不可变数据结构处理作为全量state的更新优化：https://immerjs.github.io/immer/zh-CN/
-const setState = <State extends Record<string, any>>(state: State) => (newState: Partial<State> | Produce<State>) => {
+const setState = <State extends IDefReducer>(state: State) => (newState: Partial<State> | Produce<State>) => {
   if (typeof newState === 'function') {
     return produce(state, newState);
   }
@@ -33,7 +34,7 @@ const setState = <State extends Record<string, any>>(state: State) => (newState:
 
 const dummySync = { sync: () => {} };
 
-export class LiteStoreContractor<State, Action extends Record<string, Function>, Reducer extends Record<string, any>> {
+export class LiteStoreContractor<State extends IDefReducer, Action extends Record<string, Function>, Reducer extends IDefReducer> {
   public readonly instance: Array<ILiteStoreInstance<State, Action> | null> = [];
 
   public readonly instanceContext: React.Context<number> = React.createContext(-1);
@@ -236,7 +237,7 @@ export class LiteStoreContractor<State, Action extends Record<string, Function>,
   };
 }
 
-export const createStore = <State, Reducer extends Record<string, any> = {}, Action extends Record<string, Function> = {}>(
+export const createStore = <State extends IDefReducer, Reducer extends IDefReducer = {}, Action extends Record<string, Function> = {}>(
   initialState: InitialValue<State>,
   reducer: Reducers<State, Reducer>,
   action: Actions<State, Action, Reducer>,
@@ -247,14 +248,14 @@ export const createStore = <State, Reducer extends Record<string, any> = {}, Act
 /* istanbul ignore next */
 const dummyFunction = () => ({});
 
-export const createStoreWithoutReducer = <State, Action extends Record<string, Function> = {}>(
+export const createStoreWithoutReducer = <State extends IDefReducer, Action extends Record<string, Function> = {}>(
   initialState: InitialValue<State>,
   action: Actions<State, Action, {}>,
 ): LiteStoreContractor<State, Action, {}> => {
   return new LiteStoreContractor(initialState, action, dummyFunction);
 };
 
-export const cloneStore = <State, Action extends Record<string, Function>, Reducer extends Record<string, any>>(
+export const cloneStore = <State extends IDefReducer, Action extends Record<string, Function>, Reducer extends IDefReducer>(
   liteStore: LiteStoreContractor<State, Action, Reducer>,
 ) => {
   return new LiteStoreContractor(
