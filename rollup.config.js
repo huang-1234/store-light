@@ -17,9 +17,8 @@ import sourceMaps from 'rollup-plugin-sourcemaps'
 // 代码头
 const banner =
   `/*!
- * AnyTouch.js v${pkg.version}
- * (c) 2018-${new Date().getFullYear()} Russell
- * https://github.com/any86/any-touch
+ * lite-store v${pkg.version}
+ * (c) 2022-${new Date().getFullYear()} Russell
  * Released under the MIT License.
  */`
 
