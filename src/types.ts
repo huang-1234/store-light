@@ -9,6 +9,10 @@ export type Dispatcher<Action extends Record<string, Function>> = { [k in keyof 
 
 export type Updater = () => void;
 
+export interface IDefReducer {
+  [key: string]: any;
+}
+
 export interface ISubscriber<State> {
   selector: SelectorSetter<State>;
   ContextProvider: React.FC;
@@ -51,7 +55,7 @@ export type CombineReducerCaller<State, ReducersType> = {
   };
 };
 
-export type CombineReducer<State, ReducersType> =
+export type CombineReducer<State extends IDefReducer, ReducersType> =
   | ((
     state: State,
   ) => { [k in keyof ReducersType]: Reducer<State, ReducersType[k]> } & {
@@ -63,8 +67,8 @@ export type CombineReducer<State, ReducersType> =
     setState(newState: Partial<State>): void;
   });
 
-export type Reducer<State, P> = (payload: P) => State;
-export type Reducers<State, R extends Record<string, any>> = (state: State) => { [k in keyof R]: Reducer<State, R[k]> };
+export type Reducer<State extends IDefReducer, P> = (payload: P) => State;
+export type Reducers<State extends IDefReducer, R extends Record<string, any>> = (state: State) => { [k in keyof R]: Reducer<State, R[k]> };
 
 export type Actions<State, Action extends Record<string, Function>, ReducerType> = (
   reducer: CombineReducerCaller<State, ReducerType>,
@@ -73,8 +77,4 @@ export type Actions<State, Action extends Record<string, Function>, ReducerType>
 
 export interface IRef<State> {
   current: State;
-}
-
-export interface IDefReducer {
-  [key: string]: any;
 }
