@@ -53,15 +53,15 @@ export type CombineReducerCaller<State, ReducersType> = {
 
 export type CombineReducer<State, ReducersType> =
   | ((
-      state: State,
-    ) => { [k in keyof ReducersType]: Reducer<State, ReducersType[k]> } & {
-      setState(newState: Partial<State>): void;
-    })
+    state: State,
+  ) => { [k in keyof ReducersType]: Reducer<State, ReducersType[k]> } & {
+    setState(newState: Partial<State>): void;
+  })
   | ((
-      state: State,
-    ) => {
-      setState(newState: Partial<State>): void;
-    });
+    state: State,
+  ) => {
+    setState(newState: Partial<State>): void;
+  });
 
 export type Reducer<State, P> = (payload: P) => State;
 export type Reducers<State, R extends Record<string, any>> = (state: State) => { [k in keyof R]: Reducer<State, R[k]> };
@@ -73,4 +73,8 @@ export type Actions<State, Action extends Record<string, Function>, ReducerType>
 
 export interface IRef<State> {
   current: State;
+}
+
+export interface IDefReducer {
+  [key: string]: any;
 }
