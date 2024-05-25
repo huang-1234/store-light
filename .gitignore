@@ -27,3 +27,5 @@ locale.json
 demo.js
 
 lib
+
+dist/

@@ -4,12 +4,14 @@
   "description": "light lite store state",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
+  "browser": "./dist/index.umd.js",
   "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "tsc && rollup -c --bundleConfigAsCjs",
+    "build": "tsc --outDir dist/lib --declarationDir dist/types --declaration true && tsc && rollup -c --bundleConfigAsCjs",
+    "build:p": "tsc && rollup -c",
     "lint": "eslint ./packages --ext ts --ext tsx",
     "fix": "eslint ./packages --ext ts --ext tsx --fix"
   },
