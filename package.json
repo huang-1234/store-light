@@ -1,5 +1,5 @@
 {
-  "name": "@es/light-store",
+  "name": "@huangsq/light-store",
   "version": "1.0.0",
   "description": "light lite store state",
   "main": "./dist/index.cjs.js",
@@ -10,6 +10,8 @@
     "dist"
   ],
   "scripts": {
+    "pub:test": "np --no-git",
+    "pub": "np",
     "build": "tsc --outDir dist/lib --declarationDir dist/types --declaration true && tsc && rollup -c --bundleConfigAsCjs",
     "build:p": "tsc && rollup -c",
     "lint": "eslint ./packages --ext ts --ext tsx",
