@@ -1,5 +1,5 @@
 {
-  "name": "@sq/light-store",
+  "name": "light-store",
   "version": "1.0.0",
   "description": "light lite store state",
   "main": "./dist/index.cjs.js",
