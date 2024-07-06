@@ -24,6 +24,10 @@
   "type": "module",
   "author": "huangsq",
   "license": "ISC",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "devDependencies": {
     "@rollup/plugin-json": "^6.0.0",
     "@types/node": "^20.7.1",
