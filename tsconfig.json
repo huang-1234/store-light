@@ -17,7 +17,7 @@
     // 删除注释
     "removeComments": true,
     // 保留 const和 enum声明
-    "preserveConstEnums": false,
+    "preserveConstEnums": true,
     // 生成sourceMap
     "sourceMap": true,
     // 目标文件所在路径

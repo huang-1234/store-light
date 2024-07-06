@@ -12,7 +12,9 @@ import replace from 'rollup-plugin-replace';
 // import pkg from './package.json';
 import pkg from './package.json' assert { type: 'json' };
 // 代码生成sourcemaps
-import sourceMaps from 'rollup-plugin-sourcemaps'
+import sourceMaps from 'rollup-plugin-sourcemaps';
+
+const production = process.env.TZ === 'production'
 
 // 代码头
 const banner =
@@ -34,6 +36,8 @@ export default {
     }),
 
     typescript({
+      sourceMap: !production,
+      rootDir: "./src",
       exclude: 'node_modules/**',
       typescript: require('typescript'),
 
@@ -67,8 +71,8 @@ export default {
   },
   {
     format: 'umd',
-    name: 'AnyTouch',
-    file: pkg.browser,
+    name: pkg.name,
+    file: pkg.module, // pkg.browser,
     banner,
     sourcemap: true
   }
